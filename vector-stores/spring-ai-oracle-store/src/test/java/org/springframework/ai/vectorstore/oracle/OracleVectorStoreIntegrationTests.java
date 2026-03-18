@@ -18,7 +18,6 @@ package org.springframework.ai.vectorstore.oracle;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -36,9 +35,6 @@ import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.oracle.OracleContainer;
-import org.testcontainers.utility.MountableFile;
 
 import org.springframework.ai.document.Document;
 import org.springframework.ai.document.DocumentMetadata;
@@ -65,15 +61,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @EnabledIfEnvironmentVariable(named = "TESTPILOT_USERNAME", matches = "spring_ai_.*")
-public class OracleVectorStoreIT extends BaseVectorStoreTests {
-
-	@Container
-	static OracleContainer oracle23aiContainer = new OracleContainer(OracleImage.DEFAULT_IMAGE)
-		.withCopyFileToContainer(MountableFile.forClasspathResource("/initialize.sql"),
-				"/container-entrypoint-initdb.d/initialize.sql")
-		.withStartupTimeout(Duration.ofMinutes(5))
-		.withStartupAttempts(3)
-		.withSharedMemorySize(2L * 1024L * 1024L * 1024L); // 2GB shared memory
+public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 
 	final List<Document> documents = List.of(
 			new Document(getText("classpath:/test/data/spring.ai.txt"), Map.of("meta1", "meta1")),
@@ -411,9 +399,9 @@ public class OracleVectorStoreIT extends BaseVectorStoreTests {
 		@Bean
 		public DataSourceProperties dataSourceProperties() {
 			DataSourceProperties properties = new DataSourceProperties();
-			properties.setUrl(oracle23aiContainer.getJdbcUrl());
-			properties.setUsername(oracle23aiContainer.getUsername());
-			properties.setPassword(oracle23aiContainer.getPassword());
+			properties.setUrl("jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX"));
+			properties.setUsername(System.getenv("TESTPILOT_USERNAME"));
+			properties.setPassword(System.getenv("TESTPILOT_PASSWORD"));
 			return properties;
 		}
 
