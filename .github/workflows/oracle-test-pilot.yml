@@ -76,7 +76,7 @@ jobs:
           LD_PRELOAD: /home/ubuntu/libtfojdbc1.so
           LD_LIBRARY_PATH: /home/ubuntu
         run: |
-          ./mvnw --batch-mode -ntp --update-snapshots clean install -pl '!models/spring-ai-openai'
+          ./mvnw --batch-mode -ntp --update-snapshots clean install -pl 'vector-stores/spring-ai-oracle-store'
 
       - id: delete_database
         uses: oracle-actions/setup-testpilot@896b7a475b58579357f7ad034ff43de53cde4c19 # v1.0.22
