@@ -62,6 +62,17 @@ jobs:
           user: spring_ai
 
       - name: Build all modules with unit tests
+        env:
+          RDBMS: ${{ matrix.rdbms }}
+          RUNID: ${{ github.run_number }}
+          TESTPILOT_CONNECTION_STRING_SUFFIX: ${{ steps.create_database.outputs.connection_string_suffix }}
+          TESTPILOT_PASSWORD: ${{ steps.create_database.outputs.database_password }}
+          API_HOST: ""
+          TESTPILOT_CLIENT_ID: ""
+          TESTPILOT_TOKEN: ""
+          # Needed for TFO (TCP fast open)
+          LD_PRELOAD: /home/ubuntu/libtfojdbc1.so
+          LD_LIBRARY_PATH: /home/ubuntu
         run: |
           ./mvnw --batch-mode -ntp --update-snapshots clean install
 
