@@ -1,4 +1,4 @@
-name: Build + Deploy on development branches
+name: Build on Oracle Test Pilot
 
 on:
   push:
