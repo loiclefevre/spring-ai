@@ -70,6 +70,8 @@ jobs:
           API_HOST: ""
           TESTPILOT_CLIENT_ID: ""
           TESTPILOT_TOKEN: ""
+          TESTCONTAINERS_DISABLED: true
+          TESTCONTAINERS_RYUK_DISABLED: true
           # Needed for TFO (TCP fast open)
           LD_PRELOAD: /home/ubuntu/libtfojdbc1.so
           LD_LIBRARY_PATH: /home/ubuntu
