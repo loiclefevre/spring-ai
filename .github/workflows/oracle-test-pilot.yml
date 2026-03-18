@@ -67,6 +67,7 @@ jobs:
           RUNID: ${{ github.run_number }}
           TESTPILOT_CONNECTION_STRING_SUFFIX: ${{ steps.create_database.outputs.connection_string_suffix }}
           TESTPILOT_PASSWORD: ${{ steps.create_database.outputs.database_password }}
+          TESTPILOT_USERNAME: spring_ai_${{ github.run_number }}
           API_HOST: ""
           TESTPILOT_CLIENT_ID: ""
           TESTPILOT_TOKEN: ""

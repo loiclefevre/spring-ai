@@ -31,13 +31,12 @@ import java.util.stream.Collectors;
 import javax.sql.DataSource;
 
 import oracle.jdbc.pool.OracleDataSource;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.oracle.OracleContainer;
 import org.testcontainers.utility.MountableFile;
 
@@ -65,8 +64,7 @@ import org.springframework.util.CollectionUtils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@Testcontainers
-@Disabled("Oracle image is 2GB")
+@EnabledIfEnvironmentVariable(named = "TESTPILOT_USERNAME", matches = "spring_ai_*")
 public class OracleVectorStoreIT extends BaseVectorStoreTests {
 
 	@Container
@@ -87,9 +85,9 @@ public class OracleVectorStoreIT extends BaseVectorStoreTests {
 		.withPropertyValues("test.spring.ai.vectorstore.oracle.distanceType=COSINE",
 				"test.spring.ai.vectorstore.oracle.dimensions=384",
 				// JdbcTemplate configuration
-				String.format("app.datasource.url=%s", oracle23aiContainer.getJdbcUrl()),
-				String.format("app.datasource.username=%s", oracle23aiContainer.getUsername()),
-				String.format("app.datasource.password=%s", oracle23aiContainer.getPassword()),
+				String.format("app.datasource.url=%s", "jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX")),
+				String.format("app.datasource.username=%s", System.getenv("TESTPILOT_USERNAME")),
+				String.format("app.datasource.password=%s", System.getenv("TESTPILOT_PASSWORD")),
 				"app.datasource.type=oracle.jdbc.pool.OracleDataSource");
 
 	public static String getText(final String uri) {
