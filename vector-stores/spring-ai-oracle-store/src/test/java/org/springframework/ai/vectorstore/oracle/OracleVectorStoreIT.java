@@ -64,7 +64,7 @@ import org.springframework.util.CollectionUtils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@EnabledIfEnvironmentVariable(named = "TESTPILOT_USERNAME", matches = "spring_ai_*")
+@EnabledIfEnvironmentVariable(named = "TESTPILOT_USERNAME", matches = "spring_ai_.*")
 public class OracleVectorStoreIT extends BaseVectorStoreTests {
 
 	@Container
