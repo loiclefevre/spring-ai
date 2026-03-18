@@ -85,7 +85,8 @@ public class OracleVectorStoreIT extends BaseVectorStoreTests {
 		.withPropertyValues("test.spring.ai.vectorstore.oracle.distanceType=COSINE",
 				"test.spring.ai.vectorstore.oracle.dimensions=384",
 				// JdbcTemplate configuration
-				String.format("app.datasource.url=%s", "jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX")),
+				String.format("app.datasource.url=%s",
+						"jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX")),
 				String.format("app.datasource.username=%s", System.getenv("TESTPILOT_USERNAME")),
 				String.format("app.datasource.password=%s", System.getenv("TESTPILOT_PASSWORD")),
 				"app.datasource.type=oracle.jdbc.pool.OracleDataSource");
