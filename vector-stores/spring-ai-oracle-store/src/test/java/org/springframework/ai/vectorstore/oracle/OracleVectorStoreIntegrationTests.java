@@ -399,7 +399,8 @@ public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 		@Bean
 		public DataSourceProperties dataSourceProperties() {
 			DataSourceProperties properties = new DataSourceProperties();
-			properties.setUrl("jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX"));
+			properties
+				.setUrl("jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX").replace("\"", ""));
 			properties.setUsername(System.getenv("TESTPILOT_USERNAME"));
 			properties.setPassword(System.getenv("TESTPILOT_PASSWORD"));
 			return properties;
