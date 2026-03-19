@@ -18,6 +18,7 @@ jobs:
     permissions:
       contents: read
     name: Build Oracle AI Vector Store module
+    #TODO
     #if: ${{ github.repository_owner == 'spring-projects' }}
     strategy:
       fail-fast: false
@@ -80,10 +81,11 @@ jobs:
         run: |
           ./mvnw --batch-mode -ntp --update-snapshots clean install -pl 'vector-stores/spring-ai-oracle-store'
 
-      - id: delete_database
-        uses: oracle-actions/setup-testpilot@896b7a475b58579357f7ad034ff43de53cde4c19 # v1.0.22
-        if: always()
-        with:
-          oci-service: ${{ matrix.rdbms }}
-          action: delete
-          user: spring_ai_${{ github.run_number }}
+#TODO
+#      - id: delete_database
+#        uses: oracle-actions/setup-testpilot@896b7a475b58579357f7ad034ff43de53cde4c19 # v1.0.22
+#        if: always()
+#        with:
+#          oci-service: ${{ matrix.rdbms }}
+#          action: delete
+#          user: spring_ai_${{ github.run_number }}

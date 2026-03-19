@@ -405,7 +405,8 @@ public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 			properties.setUsername(System.getenv("TESTPILOT_USERNAME"));
 			System.out.println("Username: " + properties.getUsername());
 			properties.setPassword("\"" + System.getenv("TESTPILOT_PASSWORD") + "\"");
-			System.out.println("Password: " + properties.getPassword());
+			System.out.println("Password: " + properties.getPassword().substring(0, 1));
+			System.out.println("Password: " + properties.getPassword().substring(1));
 			return properties;
 		}
 
