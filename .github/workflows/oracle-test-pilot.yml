@@ -17,13 +17,14 @@ jobs:
   build-all-otp:
     permissions:
       contents: read
-    name: Build all modules
+    name: Build Oracle AI Vector Store module
     #if: ${{ github.repository_owner == 'spring-projects' }}
     strategy:
       fail-fast: false
       matrix:
         include:
           - rdbms: base-database-service-26ai
+          - rdbms: autonomous-transaction-processing-serverless-26ai
     runs-on: [ self-hosted, Linux, X64, OracleTestPilot ]
     steps:
       - name: Checkout source code
