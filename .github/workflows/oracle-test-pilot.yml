@@ -39,16 +39,16 @@ jobs:
           distribution: 'graalvm'
           java-version: '25'
 
-#      - name: Setup Maven Build-Cache (~/.m2/build-cache)
-#        if: ${{ github.event_name != 'schedule' }}
-#        uses: actions/cache@v4
-#        with:
-#          path: ~/.m2/build-cache
-#          # See pr-check.yml for an explanation of the key format
-#          key: build-cache-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}-${{ github.run_id }}
-#          restore-keys: |
-#            build-cache-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}-
-#            build-cache-${{ runner.os }}-
+      - name: Setup Maven Build-Cache (~/.m2/build-cache)
+        if: ${{ github.event_name != 'schedule' }}
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/build-cache
+          # See pr-check.yml for an explanation of the key format
+          key: build-cache-${{ runner.os }}-${{ matrix.rdbms }}-${{ hashFiles('**/pom.xml') }}-${{ github.run_id }}
+          restore-keys: |
+            build-cache-${{ runner.os }}-${{ matrix.rdbms }}-${{ hashFiles('**/pom.xml') }}-
+            build-cache-${{ runner.os }}-
 
       - id: create_database
         uses: oracle-actions/setup-testpilot@896b7a475b58579357f7ad034ff43de53cde4c19 # v1.0.22
