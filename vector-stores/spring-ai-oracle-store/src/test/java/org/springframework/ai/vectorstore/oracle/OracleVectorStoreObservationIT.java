@@ -29,6 +29,7 @@ import io.micrometer.observation.tck.TestObservationRegistry;
 import io.micrometer.observation.tck.TestObservationRegistryAssert;
 import oracle.jdbc.pool.OracleDataSource;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.oracle.OracleContainer;
@@ -65,6 +66,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Eddú Meléndez
  */
 @Testcontainers
+@DisabledIfEnvironmentVariable(named = "TESTPILOT_USERNAME", matches = "spring_ai_.*")
 public class OracleVectorStoreObservationIT {
 
 	@Container
