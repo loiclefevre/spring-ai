@@ -76,7 +76,7 @@ public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 				String.format("app.datasource.url=jdbc:oracle:thin:@%s",
 						System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX").replace("\"", "")),
 				String.format("app.datasource.username=%s", System.getenv("TESTPILOT_USERNAME")),
-				String.format("app.datasource.password=\"%s\"", System.getenv("TESTPILOT_PASSWORD")),
+				String.format("app.datasource.password=%s", System.getenv("TESTPILOT_PASSWORD")),
 				"app.datasource.type=oracle.jdbc.pool.OracleDataSource");
 
 	public static String getText(final String uri) {
@@ -401,12 +401,8 @@ public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 			DataSourceProperties properties = new DataSourceProperties();
 			properties
 				.setUrl("jdbc:oracle:thin:@" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX").replace("\"", ""));
-			System.out.println("URL: " + properties.getUrl());
 			properties.setUsername(System.getenv("TESTPILOT_USERNAME"));
-			System.out.println("Username: " + properties.getUsername());
 			properties.setPassword(System.getenv("TESTPILOT_PASSWORD"));
-			System.out.println("Password: " + properties.getPassword().substring(0, 1));
-			System.out.println("Password: " + properties.getPassword().substring(1));
 			return properties;
 		}
 
