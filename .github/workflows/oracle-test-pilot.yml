@@ -44,6 +44,8 @@ jobs:
         if: ${{ github.event_name != 'schedule' }}
         uses: actions/cache@v4
         with:
+          # Cache repository only because we want to test always, even if no code changed, because the target database
+          # might have changed (upgraded version)
           path: ~/.m2/repository
           # See pr-check.yml for an explanation of the key format
           key: build-cache-${{ runner.os }}-${{ matrix.rdbms }}-${{ hashFiles('**/pom.xml') }}-${{ github.run_id }}
@@ -73,7 +75,7 @@ jobs:
           LD_PRELOAD: /home/ubuntu/libtfojdbc1.so
           LD_LIBRARY_PATH: /home/ubuntu
         run: |
-          ./mvnw --batch-mode -ntp --update-snapshots clean verify -pl vector-stores/spring-ai-oracle-store
+          ./mvnw --batch-mode -ntp --update-snapshots -pl vector-stores/spring-ai-oracle-store clean -am verify 
 
       - id: delete_database
         uses: oracle-actions/setup-testpilot@896b7a475b58579357f7ad034ff43de53cde4c19 # v1.0.22
