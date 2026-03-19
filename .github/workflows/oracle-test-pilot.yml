@@ -43,7 +43,7 @@ jobs:
         if: ${{ github.event_name != 'schedule' }}
         uses: actions/cache@v4
         with:
-          path: ~/.m2/build-cache
+          path: ~/.m2/repository
           # See pr-check.yml for an explanation of the key format
           key: build-cache-${{ runner.os }}-${{ matrix.rdbms }}-${{ hashFiles('**/pom.xml') }}-${{ github.run_id }}
           restore-keys: |
