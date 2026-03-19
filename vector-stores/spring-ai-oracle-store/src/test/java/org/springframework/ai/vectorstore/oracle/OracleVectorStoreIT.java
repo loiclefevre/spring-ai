@@ -61,7 +61,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @EnabledIfEnvironmentVariable(named = "TESTPILOT_USERNAME", matches = "spring_ai_.*")
-public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
+public class OracleVectorStoreIT extends BaseVectorStoreTests {
 
 	final List<Document> documents = List.of(
 			new Document(getText("classpath:/test/data/spring.ai.txt"), Map.of("meta1", "meta1")),
