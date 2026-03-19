@@ -48,7 +48,6 @@ jobs:
           key: build-cache-${{ runner.os }}-${{ matrix.rdbms }}-${{ hashFiles('**/pom.xml') }}-${{ github.run_id }}
           restore-keys: |
             build-cache-${{ runner.os }}-${{ matrix.rdbms }}-${{ hashFiles('**/pom.xml') }}-
-            build-cache-${{ runner.os }}-
 
       - id: create_database
         uses: oracle-actions/setup-testpilot@896b7a475b58579357f7ad034ff43de53cde4c19 # v1.0.22
