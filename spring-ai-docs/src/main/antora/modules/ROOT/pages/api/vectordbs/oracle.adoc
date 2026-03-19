@@ -1,8 +1,8 @@
-= Oracle Database 23ai - AI Vector Search
+= Oracle AI Database 26ai - AI Vector Search
 
-The link:https://docs.oracle.com/en/database/oracle/oracle-database/23/vecse/overview-ai-vector-search.html[AI Vector Search] capabilities of the Oracle Database 23ai (23.4+) are available as a Spring AI `VectorStore` to help you to store document embeddings and perform similarity searches. Of course, all other features are also available.
+The link:https://docs.oracle.com/en/database/oracle/oracle-database/26/vecse/overview-ai-vector-search.html[AI Vector Search] capabilities of the Oracle AI Database 26ai are available as a Spring AI `VectorStore` to help you to store document embeddings and perform similarity searches. Of course, all other features are also available.
 
-TIP: The <<Run Oracle Database 23ai locally,Run Oracle Database 23ai locally>> appendix shows how to start a database with a lightweight Docker container.
+TIP: The <<Run Oracle Database 26ai locally,Run Oracle Database 26ai locally>> appendix shows how to start a database with a lightweight Docker container.
 
 == Auto-Configuration
 
@@ -201,10 +201,10 @@ public VectorStore vectorStore(JdbcTemplate jdbcTemplate, EmbeddingModel embeddi
 }
 ----
 
-== Run Oracle Database 23ai locally
+== Run Oracle Database 26ai locally
 
 ----
-docker run --rm --name oracle23ai -p 1521:1521 -e APP_USER=mlops -e APP_USER_PASSWORD=mlops -e ORACLE_PASSWORD=mlops gvenzl/oracle-free:23-slim
+docker run --rm --name oracle26ai -p 1521:1521 -e APP_USER=mlops -e APP_USER_PASSWORD=mlops -e ORACLE_PASSWORD=mlops gvenzl/oracle-free:23-slim
 ----
 
 You can then connect to the database using:
