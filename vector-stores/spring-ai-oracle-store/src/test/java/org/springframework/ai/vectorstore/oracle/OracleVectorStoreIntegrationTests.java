@@ -73,8 +73,8 @@ public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 		.withPropertyValues("test.spring.ai.vectorstore.oracle.distanceType=COSINE",
 				"test.spring.ai.vectorstore.oracle.dimensions=384",
 				// JdbcTemplate configuration
-				String.format("app.datasource.url=%s",
-						"jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX").replace("\"", "")),
+				String.format("app.datasource.url=jdbc:oracle:thin:@//%s",
+						System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX").replace("\"", "")),
 				String.format("app.datasource.username=%s", System.getenv("TESTPILOT_USERNAME")),
 				String.format("app.datasource.password=%s", System.getenv("TESTPILOT_PASSWORD")),
 				"app.datasource.type=oracle.jdbc.pool.OracleDataSource");
@@ -401,8 +401,11 @@ public class OracleVectorStoreIntegrationTests extends BaseVectorStoreTests {
 			DataSourceProperties properties = new DataSourceProperties();
 			properties
 				.setUrl("jdbc:oracle:thin:@//" + System.getenv("TESTPILOT_CONNECTION_STRING_SUFFIX").replace("\"", ""));
+			System.out.println("URL: " + properties.getUrl());
 			properties.setUsername(System.getenv("TESTPILOT_USERNAME"));
+			System.out.println("Username: " + properties.getUsername());
 			properties.setPassword(System.getenv("TESTPILOT_PASSWORD"));
+			System.out.println("Password: " + properties.getPassword());
 			return properties;
 		}
 
